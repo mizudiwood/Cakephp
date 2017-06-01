@@ -3,7 +3,8 @@
 
 namespace App\Controller;
 
-use App\Controller\AppController;
+// use App\Controller\AppController;
+use Cake\Network\Exception\NotFoundException;
 
 class ArticlesController extends AppController
 {
@@ -38,6 +39,10 @@ class ArticlesController extends AppController
             $this->Flash->error(__('Unable to add your article.'));
         }
         $this->set('article', $article);
+
+        // 記事のカテゴリを１つ選択するためにカテゴリの一覧を追加
+        $categories = $this->Articles->Categories->find('treeList');
+        $this->set(compact('categories'));
     }
 
     public function edit($id = null)
