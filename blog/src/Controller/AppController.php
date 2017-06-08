@@ -51,7 +51,7 @@ class AppController extends Controller
         //$this->loadComponent('Security');
         //$this->loadComponent('Csrf');
         $this->loadComponent('Auth', [
-            // 'authorize' => 'Controller',
+            'authorize' => 'Controller',
             'authenticate' => [
                 'Form' => [
                     'fields' => [
@@ -86,8 +86,14 @@ class AppController extends Controller
             $this->set('_serialize', true);
         }
     }
-    // public function isAuthorized($user)
-    // {
-    //     return false;
-    // }
+    public function isAuthorized($user)
+    {
+    // Admin can access every action
+        if (isset($user['user']) && $user['user'] === 'admin') {
+            return true;
+        }
+
+    // Default deny
+        return false;
+    }
 }

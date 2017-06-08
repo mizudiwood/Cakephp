@@ -33,6 +33,9 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $article = $this->Articles->patchEntity($article, $this->request->getData());
+
+            $article->user_id = $this->Auth->user('id');
+
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('Your article has been saved.'));
                 return $this->redirect(['action' => 'index']);
@@ -70,26 +73,22 @@ class ArticlesController extends AppController
             return $this->redirect(['action' => 'index']);
         }
     }
-    // public function isAuthorized($user)
-    // {
-    //     $action = $this->request->getParam('action');
-    //
-    // // The add and index actions are always allowed.
-    //     if (in_array($action, ['index', 'add', 'view'])) {
-    //         return true;
-    //     }
-    // // All other actions require an id.
-    //     if (!$this->request->getParam('pass.0')) {
-    //         return false;
-    //     }
-    //
-    // // Check that the bookmark belongs to the current user.
-    //     $id = $this->request->getParam('pass.0');
-    //     $article = $this->Articles->get($id);
-    //     if ($article->user_id == $user['id']) {
-    //         return true;
-    //     }
-    //     return parent::isAuthorized($user);
-    // }
+    public function isAuthorized($user)
+    {
+        // All registered users can add articles
+        if ($this->request->getParam('action') === 'add') {
+            return true;
+        }
+
+        // The owner of an article can edit and delete it
+        if (in_array($this->request->getParam('action'), ['edit', 'delete'])) {
+            $articleId = (int)$this->request->getParam('pass.0');
+            if ($this->Articles->isOwnedBy($articleId, $user['id'])) {
+                return true;
+            }
+        }
+
+        return parent::isAuthorized($user);
+    } 
 }
 ?>

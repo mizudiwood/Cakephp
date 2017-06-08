@@ -49,7 +49,7 @@ class UsersTable extends Table
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
+            ->notEmpty('id', 'create');
 
         $validator
             ->requirePresence('user', 'create')

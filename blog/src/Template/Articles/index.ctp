@@ -2,9 +2,22 @@
 
 <!-- <h1>Blog articles</h1> -->
 
-<?PHP echo $this->Html->link(__('Credits', true), array('plugin' => null, 'controller' => 'credits', 'action' => 'index'), array('class'=>'active')); ?>
-<p><?= $this->Html->link("ログイン", ['action' => '../login']) ?></p>
-<p><?= $this->Html->link("ログアウト", ['action' => '../logout']) ?></p>
+<p><?PHP
+session_start();
+// echo "登录成功：". $_SESSION['user'];
+if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+    echo $this->Html->link(__('ログアウト', true),
+    array('plugin' => null, 'controller' => 'credits', 'action' => '../logout'),
+    array('class'=>'active'));
+    echo "登录成功：". $_SESSION['user'];
+}
+else{
+    echo $this->Html->link(__('ログイン', true),
+    array('plugin' => null, 'controller' => 'credits', 'action' => '../login'),
+    array('class'=>'active'));
+}
+?></p>
+
 <p><?= $this->Html->link("Add Article", ['action' => 'add']) ?></p>
 <table>
     <tr>
