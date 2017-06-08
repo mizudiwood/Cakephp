@@ -14,6 +14,7 @@ class ArticlesController extends AppController
         parent::initialize();
 
         $this->loadComponent('Flash'); // Include the FlashComponent
+        $this->Auth->allow(['index','view']);
     }
 
     public function index()
@@ -69,5 +70,26 @@ class ArticlesController extends AppController
             return $this->redirect(['action' => 'index']);
         }
     }
+    // public function isAuthorized($user)
+    // {
+    //     $action = $this->request->getParam('action');
+    //
+    // // The add and index actions are always allowed.
+    //     if (in_array($action, ['index', 'add', 'view'])) {
+    //         return true;
+    //     }
+    // // All other actions require an id.
+    //     if (!$this->request->getParam('pass.0')) {
+    //         return false;
+    //     }
+    //
+    // // Check that the bookmark belongs to the current user.
+    //     $id = $this->request->getParam('pass.0');
+    //     $article = $this->Articles->get($id);
+    //     if ($article->user_id == $user['id']) {
+    //         return true;
+    //     }
+    //     return parent::isAuthorized($user);
+    // }
 }
 ?>
