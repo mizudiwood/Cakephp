@@ -2,8 +2,9 @@
 
 <!-- <h1>Blog articles</h1> -->
 
-<p><?= $this->Html->link("Login", ['action' => '../login']) ?></p>
-<p><?= $this->Html->link("Logout", ['action' => '../logout']) ?></p>
+<?PHP echo $this->Html->link(__('Credits', true), array('plugin' => null, 'controller' => 'credits', 'action' => 'index'), array('class'=>'active')); ?>
+<p><?= $this->Html->link("ログイン", ['action' => '../login']) ?></p>
+<p><?= $this->Html->link("ログアウト", ['action' => '../logout']) ?></p>
 <p><?= $this->Html->link("Add Article", ['action' => 'add']) ?></p>
 <table>
     <tr>
