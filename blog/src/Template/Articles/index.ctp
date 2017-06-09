@@ -3,19 +3,26 @@
 <!-- <h1>Blog articles</h1> -->
 
 <p><?PHP
-session_start();
-// echo "登录成功：". $_SESSION['user'];
-if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+// ['action' => 'iflogin']
+ // session_start();
+ // echo "登录成功：". isset($_COOKIE['cookie']);
+ // var_dump($x);
+// if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+    // if(isset($_COOKIE['user']) && $_COOKIE['user']==='admin'){
     echo $this->Html->link(__('ログアウト', true),
-    array('plugin' => null, 'controller' => 'credits', 'action' => '../logout'),
+    array('plugin' => null, 'controller' => 'users', 'action' => '../logout'),
     array('class'=>'active'));
-    echo "登录成功：". $_SESSION['user'];
-}
-else{
+
+    // echo "登录成功：". $_SESSION['user'];
+// }
+?></p>
+<p><?PHP
+// else{
+
     echo $this->Html->link(__('ログイン', true),
-    array('plugin' => null, 'controller' => 'credits', 'action' => '../login'),
+    array('plugin' => null, 'controller' => 'users', 'action' => '../login'),
     array('class'=>'active'));
-}
+// }
 ?></p>
 
 <p><?= $this->Html->link("Add Article", ['action' => 'add']) ?></p>

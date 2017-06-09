@@ -130,4 +130,15 @@ class UsersController extends AppController
         $this->Flash->success('ログアウトしました。');
         return $this->redirect(['action' => '../'],$this->Auth->logout());
     }
+
+    // public function iflogin()
+    // {
+    // // Admin can access every action
+    //
+    //     if($this->Auth->user('id')==NULL);
+    //     return $this->redirect(['action' => '../'],true);
+    //
+    // // Default deny
+    //
+    // }
 }

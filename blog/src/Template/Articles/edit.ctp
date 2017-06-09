@@ -8,3 +8,5 @@
     echo $this->Form->button(__('Save Article'));
     echo $this->Form->end();
 ?>
+
+ <input type="button" class="btn" onclick="javascript:history.back(-1);" value="戻る">
