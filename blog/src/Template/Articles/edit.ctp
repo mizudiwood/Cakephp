@@ -9,4 +9,4 @@
     echo $this->Form->end();
 ?>
 
- <input type="button" class="btn" onclick="javascript:history.back(-1);" value="戻る">
+<input type="button" class="btn" onclick="location.href='../'" value="戻る" style="font-size: 15px;">

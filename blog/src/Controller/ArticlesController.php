@@ -24,6 +24,7 @@ class ArticlesController extends AppController
 
     public function view($id)
     {
+        // $this->viewBuilder()->autoLayout(false);
         $article = $this->Articles->get($id);
         $this->set(compact('article'));
     }
@@ -89,6 +90,6 @@ class ArticlesController extends AppController
         }
 
         return parent::isAuthorized($user);
-    } 
+    }
 }
 ?>
